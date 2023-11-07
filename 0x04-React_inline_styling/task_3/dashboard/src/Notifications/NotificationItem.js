@@ -8,7 +8,16 @@ const styles = StyleSheet.create({
   },
   default: {
     color: "blue"
-  }
+  },
+  small: {
+    '@media (max-width: 900px)': {
+      listStyle: "none",
+      borderBottom: "2px solid black",
+      width:"100%",
+      paddingBottom: "20px",
+      paddingTop: "15px",
+    }
+  },
 })
 
 class NotificationItem extends PureComponent {
@@ -16,14 +25,14 @@ class NotificationItem extends PureComponent {
     let classname;
     {this.props.type === "default" ? classname = styles.default : classname = styles.urgent}
     return (
-      this.props.value ? <li data-notification-type={this.props.type} key={this.props.id} onClick={() => this.props.markAsRead(this.props.id)} className={css(classname)}>
+      this.props.value ? <li data-notification-type={this.props.type} key={this.props.id} onClick={() => this.props.markAsRead(this.props.id)} className={css([classname, styles.small])}>
               {this.props.value}
               </li> : 
              <li 
             data-notification-type={this.props.type} 
             dangerouslySetInnerHTML={this.props.html}
             key={this.props.id}
-            onClick={() => this.props.markAsRead(this.props.id)} className={css(classname)}>
+            onClick={() => this.props.markAsRead(this.props.id)} className={css([classname, styles.small])}>
             </li>
     )
   }

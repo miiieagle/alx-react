@@ -16,16 +16,28 @@ const styles = StyleSheet.create({
     right: "1rem"
   },
   Notificationsp: {
-    marginBottom: "25px",
-    position: "absolute",
-    left: "1rem",
-    top: "3rem"
+    // marginBottom: "25px",
+    // position: "absolute",
+    // left: "1rem",
+    // top: "3rem"
   },
   menuItem: {
     position: "absolute",
     top: "0rem",
     right: "1rem"
-}
+  },
+  small: {
+    '@media (max-width: 900px)': {
+      padding: "0",
+      fontSize: "20px",
+      width: "100%",
+      height: "100%",
+      position: "fixed",
+      top: "0",
+      left: "0",
+      border: "none"
+    }
+  }
 })
 
 class Notifications extends Component {
@@ -47,7 +59,7 @@ class Notifications extends Component {
     return (
       <>
       {this.props.displayDrawer &&
-      <div className={css(styles.Notifications)}>
+      <div className={css([styles.Notifications, styles.small])}>
         <button aria-label="Close"
                 style={{position: 'absolute',top: '1rem', right: '1rem'}}
                 onClick={this.onClick}>
@@ -62,9 +74,9 @@ class Notifications extends Component {
             }
           </ul>
       </div>}
-      <div className={css(styles.menuItem)}>
+      {this.props.displayDrawer === false && <div className={css([styles.menuItem])}>
         Your Notification
-      </div> 
+      </div> }
       
       </>
     )

@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     display: 'grid',
     gridTemplateRows: "1fr 1fr",
   },
-  body: {
+  AppBody: {
     paddingLeft: "3rem",
     paddingTop: "3rem",
   },
@@ -25,6 +25,11 @@ const styles = StyleSheet.create({
   },
   Footerp: {
       textAlign: "center"
+    },
+    small: {
+      '@media (max-width: 900px)': {
+        display: "none"
+      }
     }
 })
 
@@ -61,9 +66,9 @@ class App extends Component {
     return (
       <React.Fragment>
         <Notifications listNotifications={listNotifications} />
-        <div className={css(styles.App)}>
+        <div className={css([styles.App, styles.small])}>
             <Header />
-            <div className={css(styles.body)}>
+            <div className={css(styles.AppBody)}>
               {this.props.isLoggedIn ?
               <>
               <BodySection title="News from the School">
@@ -80,7 +85,7 @@ class App extends Component {
               }
             </div>
         </div>
-        <div className={css([styles.footer, styles.Footerp])}>
+        <div className={css([styles.footer, styles.Footerp, styles.small])}>
           <Footer />
         </div>
       </React.Fragment>
